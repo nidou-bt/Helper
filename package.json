@@ -1,0 +1,34 @@
+{
+  "name": "helper",
+  "version": "1.0.0",
+  "description": "final project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "back": "nodemon server.js",
+    "front": "cd client && npm start",
+    "dev": "concurrently \"npm run front\" \"npm run back\""
+  },
+  "keywords": [
+    "react",
+    "express",
+    "node",
+    "mongoDB"
+  ],
+  "author": "Nidhal BT",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.14",
+    "multer": "^1.4.4"
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.15"
+  }
+}

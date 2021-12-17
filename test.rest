@@ -1,0 +1,7 @@
+post http://localhost:2000/api/workad/update/61b9af2352a0c310f0dcf663
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWFlZTRlYjBhMTAzODIzYjY5MDM0MTIiLCJpYXQiOjE2Mzg4NjAxMjYsImV4cCI6MTYzODg2MzcyNn0.MOUsMUavN8VibC7PgopPhLQfe7tPcU5f9Tf6mNR7sRU
+
+{
+    "WorkImg":
+
+}
