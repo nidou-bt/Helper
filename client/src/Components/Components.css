@@ -1,0 +1,9 @@
+.footer{
+position:absolute ;
+top: 90%;
+text-align: center;
+}
+.centerLoading{
+    display: flex;
+  justify-content: center;
+}
