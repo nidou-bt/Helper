@@ -9,7 +9,7 @@ const Navbar = () => {
 
     return (
         <div> 
-          {isLoad?<Loading/>:user&&user.role==1?<NavbarAdmin/>:<NavbarUser/>}
+          {isLoad?<Loading/>:user&&user.role===1?<NavbarAdmin/>:<NavbarUser/>}
          
         </div>
     )

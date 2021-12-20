@@ -12,6 +12,10 @@ const isAuth=async(req,res,next)=>{
         return res.status(401).send({errors:[{msg:"Not Authorized"}]});
     }
     const findUser=await User.findById(decoded._id)
+    // verified id of user
+    if(!findUser){
+        return res.status(200).send({errors:[{msg:"No User With This Id"}]})
+    }
     req.user=findUser;
     // console.log("req.user",req.user)
         next();

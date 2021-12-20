@@ -79,7 +79,7 @@ exports.getSearchByAuthId = async (req, res) => {
     let listSearch = await Search_Ad.find({ Auth: req.user._id });
     res
       .status(200)
-      .send({ msg: "get Search_Ad by Auth id", Search_Ad: listSearch });
+      .send({ msg: "get Search_Ad by Auth id", Search_Ads: listSearch });
   } catch (error) {
     res.status(400).send({
       errors: [{ msg: "can not get the list of the Search_Ads by Auth id" }],

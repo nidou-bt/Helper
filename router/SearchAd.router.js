@@ -18,11 +18,11 @@ router.get("/test", (req, res) => {
 });
 //CRUD
 //get all Search ad
-router.get("/searchads", isAuth, getAllSearch);
+router.get("/searchads",getAllSearch);
 //get one Search ad by id
 router.get("/getid/:id", isAuth, getOneSearchbyId);
 //get all Search id by auth id
-// for user we use token._id
+// for user we user token._id
 router.get("/getauth", isAuth, getSearchByAuthId);
 //add one Search ad by id
 router.post("/add", isAuth, upload.single("SearchImg"), addNewSearchAd);

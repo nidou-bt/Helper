@@ -24,6 +24,15 @@ exports.getoneUserById = async (req, res) => {
     res.status(400).send({ errors: [{ msg: "can not get the user" }] });
   }
 };
+//get user by token
+exports.getoneUserByToken = async (req, res) => {
+  try {
+    //succ get
+    res.status(200).send({ msg: "get one user by id", user: req.user });
+  } catch (error) {
+    res.status(400).send({ errors: [{ msg: "can not get the user" }] });
+  }
+};
 // get one user by name
 exports.getUserByName = async (req, res) => {
   try {
@@ -51,11 +60,21 @@ exports.deleteoneUserById = async (req, res) => {
   }
 };
 //update one user by id
-exports.updateoneUserById = async (req, res) => {
+exports.updateoneUserByToken = async (req, res) => {
+  let findUser = await User.findById(req.user._id.toString());
+  if (req.body.name != null) {
+    findUser.name = req.body.name;
+  }
+  if (req.body.LastName != null) {
+    findUser.LastName = req.body.LastName;
+  }
+  if (req.body.email != null) {
+    findUser.email = req.body.email;
+  }
   try {
     let U = await User.updateOne(
-      { _id: req.params.id },
-      { $set: { ...req.body } }
+      { _id: req.user._id.toString() },
+      { $set: { ...findUser } }
     );
     if (U.modifiedCount) {
       return res.status(200).send({ msg: "updating succ" });
@@ -70,16 +89,17 @@ exports.updateoneUserById = async (req, res) => {
 // delete all the Work / Search Ads too
 exports.deleteUserById = async (req, res) => {
   try {
-    
-    let findUser= await User.findById({ _id: req.params.id})
-    if(!findUser){
-      return res.status(400).send({errors: [{ msg: "there is no user with this id" }]})
+    let findUser = await User.findById({ _id: req.params.id });
+    if (!findUser) {
+      return res
+        .status(400)
+        .send({ errors: [{ msg: "there is no user with this id" }] });
     }
-    await Work_Ad.deleteMany({Auth:req.params.id});
-    await Search_Ad.deleteMany({Auth:req.params.id});
+    await Work_Ad.deleteMany({ Auth: req.params.id });
+    await Search_Ad.deleteMany({ Auth: req.params.id });
     await User.deleteOne({ _id: req.params.id });
-    res.status(200).send({ errors: [{ msg: "delete user success" }]});
+    res.status(200).send({ errors: [{ msg: "delete user success" }] });
   } catch (error) {
-    res.status(400).send({errors: [{ msg: "can not delete the user" }]});
+    res.status(400).send({ errors: [{ msg: "can not delete the user" }] });
   }
 };

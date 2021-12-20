@@ -19,7 +19,7 @@ router.get("/test", (req, res) => {
 });
 //CRUD
 //get all work ad
-router.get("/workads", isAuth, getAllWorkAd);
+router.get("/workads", getAllWorkAd);
 //get one work ad by id
 router.get("/getid/:id", isAuth, getOneWorkById);
 //get all work ad by auth id

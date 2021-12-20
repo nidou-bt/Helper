@@ -4,5 +4,6 @@ export const LOAD_USER = "LOAD_USER";
 export const FAIL_USER = "FAIL_USER";
 export const CURRENT_USER="CURRENT_USER"; 
 export const LOGOUT_USER="LOGOUT_USER";
-export const DELETE_USER="DELETE_USER";
-export const UPLOAD_USER="UPLOAD_USER";
+//  for user
+export const GET_USER="GET_USER"
+

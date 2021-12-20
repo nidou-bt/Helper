@@ -1,9 +1,11 @@
 import {
   CURRENT_USER,
   FAIL_USER,
+  GET_USER,
   LOAD_USER,
   LOGIN_USER,
   LOGOUT_USER,
+  REGISTER_USER,
 } from "../constants/user";
 import axios from "axios";
 
@@ -12,6 +14,7 @@ export const register = (newUser, navigate) => async (dispatch) => {
   dispatch({ type: LOAD_USER });
   try {
     await axios.post("/api/user/register", newUser);
+    dispatch({ type: REGISTER_USER });
     navigate("/login");
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data });
@@ -30,7 +33,7 @@ export const login = (user, navigate) => async (dispatch) => {
 };
 //currently
 export const current = () => async (dispatch) => {
-  const config = {
+  let config = {
     headers: {
       authorization: localStorage.getItem("token"),
     },
@@ -49,13 +52,33 @@ export const logout = () => {
     type: LOGOUT_USER,
   };
 };
+//get one user by token
+export const getUser = () => async (dispatch) => {
+  let config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  dispatch({ type: LOAD_USER });
+  try {
+    let { data } = await axios.get("api/user/gettoken", config);
+    dispatch({ type: GET_USER, payload: data.user });
+  } catch (error) {
+    dispatch({ type: FAIL_USER, payload: error.response.data });
+  }
+};
+
 //update user
-// export const updateUser=(id,user,navigate)=>async(dispatch)=>{
-//   dispatch({type:LOAD_USER});
-//   try {
-//     await axios.put(`/api/user/${id}`,user)
-//     dispatch()
-//   } catch (error) {
-    
-//   }
-// }
+export const updateUser = (user) => async (dispatch) => {
+  let config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  try {
+    await axios.put("/api/user/update", user, config);
+    dispatch(getUser());
+  } catch (error) {
+    dispatch({ type: FAIL_USER, payload: error.response.data });
+  }
+};

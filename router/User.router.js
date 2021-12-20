@@ -6,7 +6,8 @@ const {
   getUserByName,
   deleteUserById,
   getoneUserById,
-  updateoneUserById,
+  getoneUserByToken,
+  updateoneUserByToken,
 } = require("../controllers/user.controllers");
 
 const isAdmin = require("../middlewares/isAdmin");
@@ -29,13 +30,15 @@ router.post("/login", loginValidation(), validation, Login);
 router.get("/users", isAuth,isAdmin, getallUser);
 //get user by id
 router.get("/getid/:id", isAuth, getoneUserById);
+//get user by token
+router.get("/gettoken", isAuth, getoneUserByToken);
 //get user by name
 router.get("/getname", isAuth,isAdmin, getUserByName);
 //delete user by id
 // delete all the Work / Search Ads too
 router.delete("/delete/:id", isAuth, isAdmin,deleteUserById);
 //update user by id
-router.put("/update/:id", isAuth, updateoneUserById);
+router.put("/update", isAuth, updateoneUserByToken);
 //update favorit Work_Ad by id
 router.put("/work/favorit",isAuth,updateFavoritWork)
 //delete favorit work_Ad by id
