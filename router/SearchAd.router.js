@@ -20,7 +20,7 @@ router.get("/test", (req, res) => {
 //get all Search ad
 router.get("/searchads",getAllSearch);
 //get one Search ad by id
-router.get("/getid/:id", isAuth, getOneSearchbyId);
+router.get("/getid/:id", getOneSearchbyId);
 //get all Search id by auth id
 // for user we user token._id
 router.get("/getauth", isAuth, getSearchByAuthId);

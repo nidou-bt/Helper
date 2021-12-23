@@ -3,20 +3,19 @@
 import axios from "axios";
 import { FAIL_WORK, GET_ALL_WORK, LOAD_WORK } from "../constants/workAd";
 
-const config = {
-    headers: {
-      authorization: localStorage.getItem("token"),
-    },
-  };
+// const config = {
+//     headers: {
+//       authorization: localStorage.getItem("token"),
+//     },
+//   };
 //get all work ad
 export const getAllWork=()=>async(dispatch)=>{
     dispatch({type:LOAD_WORK})
     try {
         let {data}=await axios.get("/api/workad/workads")
-console.log("data",data)
         dispatch({type:GET_ALL_WORK, payload:data})
     } catch (error) {
-        // dispatch({type:FAIL_WORK, payload: error.response.data})
+        dispatch({type:FAIL_WORK, payload: error.response.data})
         console.log("error")
     }
 }

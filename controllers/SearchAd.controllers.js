@@ -88,15 +88,27 @@ exports.getSearchByAuthId = async (req, res) => {
 };
 //update one work ad by id
 exports.updateOneSearchById = async (req, res) => {
+  let findSearch = await Search_Ad.findById(req.params.id);
+  if (req.body.adresse != null) {
+    findSearch.adresse = req.body.adresse;
+  }
+  if (req.body.phone != null) {
+    findSearch.phone = req.body.phone;
+  }
+  if (req.body.bio != null) {
+    findSearch.bio = req.body.bio;
+  }
+  if (req.body.SearchImg != null) {
+    findSearch.SearchImg = req.body.SearchImg;
+  }
   try {
     //verified of Id
-    let findSearch = await Search_Ad.findById(req.params.id);
+    
     if (!findSearch) {
       return res
         .status(400)
         .send({ errors: [{ msg: "no  Search Ad with this id" }] });
     }
-
     //verified id of user
     if (findSearch.Auth.toString() !== req.user._id.toString()) {
       return res
@@ -111,7 +123,6 @@ exports.updateOneSearchById = async (req, res) => {
       imageUrl = req.file.filename;
     }
     //update
-    console.log("req.params.id", req.params.id);
     let Sos = await Search_Ad.updateOne(
       { _id: req.params.id },
       { $set: { ...req.body, imageUrl: imageUrl } }

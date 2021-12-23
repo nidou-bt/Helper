@@ -6,7 +6,7 @@ import Loading from "../Loading";
 const Update = () => {
   const user = useSelector((state) => state.userReducer.user);
   const isLoad = useSelector(state => state.userReducer.isLoad)
-  const [userU, setUserU] = useState({user});
+  const [userU, setUserU] = useState(user);
   const dispatch = useDispatch();
   const handelChange = (e) => {
     setUserU({ ...userU,[e.target.name]: e.target.value });

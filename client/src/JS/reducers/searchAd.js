@@ -14,13 +14,14 @@ const initialState = {
 const searchReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_SEARCH:
-      return { ...state, isLoad: false, searchList: payload.Search_Ads };
+      return { ...state, isLoad: false, searchList: payload.Search_Ads,searchAd:{} };
     case GET_ONE_SEARCH:
       return { ...state, searchAd: payload.SearchAd, isLoad: false };
     case LOAD_SEARCH:
       return { ...state, isLoad: true };
     case FAIL_SEARCH:
       return { ...state, isLoad: false, errors: payload.errors };
+
     default:
       return state;
   }

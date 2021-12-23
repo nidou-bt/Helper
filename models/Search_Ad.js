@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 // ilawaj 3ala 5idma
 const searchAdSchema = new Schema({
+  name: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
   typeJob: { type: Array, default: [], required: true },
   adresse: {
     type: String,
@@ -16,6 +22,9 @@ const searchAdSchema = new Schema({
     required: true,
   },
   imageUrl: {
+    type: String,
+  },
+  email:{
     type: String,
   },
   date: {
