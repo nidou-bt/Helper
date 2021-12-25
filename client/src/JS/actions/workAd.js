@@ -22,7 +22,20 @@ export const getAllWork=()=>async(dispatch)=>{
 //get one work ad by id
 
 //get all work ad by auth id
-
+export const getAllWorkByAuth=()=>async(dispatch)=>{
+    const config = {
+        headers: {
+          authorization: localStorage.getItem("token"),
+        },
+      };
+    dispatch({type:LOAD_WORK})
+    try {
+        let {data}=await axios.get("/api/workad/getauth",config)
+dispatch({type:GET_ALL_WORK, payload:data})
+    } catch (error) {
+        dispatch({type: FAIL_WORK, payload: error.response.data})
+    }
+}
 //add one work ad by id
 
 //delete work ad by id

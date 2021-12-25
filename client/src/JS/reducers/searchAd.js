@@ -21,7 +21,6 @@ const searchReducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoad: true };
     case FAIL_SEARCH:
       return { ...state, isLoad: false, errors: payload.errors };
-
     default:
       return state;
   }

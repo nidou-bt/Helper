@@ -72,12 +72,31 @@ export const updateSearchById=(id,file,updateSearch)=>async(dispatch)=>{
     }
 }
 //add Search Ad 
-// export const addSearchAd=(searchAd)=>async(dispatch)=>{
-//     dispatch({type:LOAD_SEARCH})
-//     try {
-//         await axios.post("/api/searchad/add",searchAd)
-//         dispatch(getAllSearch())
-//     } catch (error) {
-//         dispatch({type: FAIL_SEARCH, payload: error.response.data})
-//     }
-// }
+export const addSearchAd=(searchAd, file,navigate)=>async(dispatch)=>{
+    const config = {
+        headers: {
+          authorization: localStorage.getItem("token"),
+        },
+      };
+      console.log("addSearch", searchAd)
+      let formData=new FormData()
+      formData.append('adresse',searchAd.adresse)
+      formData.append('phone',searchAd.phone)
+      formData.append('bio',searchAd.bio)
+      searchAd.typeJob.forEach((el,i)=>formData.append(`typeJob[${i}]`,searchAd.typeJob[i]))
+    // for(let i=0; i<searchAd.typeJob;i++){
+    //     formData.append(`typeJob[${i}]`,searchAd.typeJob[i])
+    // }
+    // formData.append("typeJob[0]",searchAd.typeJob[0])
+    // formData.append("typeJob[1]",searchAd.typeJob[1])
+    //   formData.append('typeJob',searchAd.typeJob)
+      formData.append('SearchImg',file)
+    try {
+        await axios.post("/api/searchad/add",formData,config)
+        dispatch(getAllSearch())
+        navigate("/listad");
+        // console.log("addSearch2", searchAd)
+    } catch (error) {
+        dispatch({type: FAIL_SEARCH, payload: error.response.data})
+    }
+}

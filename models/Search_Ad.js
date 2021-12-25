@@ -5,9 +5,6 @@ const searchAdSchema = new Schema({
   name: {
     type: String,
   },
-  lastName: {
-    type: String,
-  },
   typeJob: { type: Array, default: [], required: true },
   adresse: {
     type: String,

@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import {useDispatch} from "react-redux";
-import { login } from '../../JS/actions/user';
+import { useDispatch } from "react-redux";
+import { login } from "../../JS/actions/user";
 
 const Login = () => {
-    const navigate = useNavigate();
-const dispatch = useDispatch();
-const [user, setUser] = useState({
-    email:"",
-    password:""
-})
-const handelChange = (e) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const handelChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const handelLogin = (e) => {
@@ -23,10 +23,9 @@ const handelChange = (e) => {
     });
   };
 
-
-    return (
-        <div>
-            <form style={{ margin: "20px" }}>
+  return (
+    <div>
+      <form style={{ margin: "20px" }}>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1" style={{ marginLeft: "10px" }}>
             Email address
@@ -66,8 +65,8 @@ const handelChange = (e) => {
           LOGIN
         </button>
       </form>
-        </div>
-    )
-}
+    </div>
+  );
+};
 
-export default Login
+export default Login;

@@ -14,7 +14,7 @@ const EditSearchCard = ({ element }) => {
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState([]);
   const [show, setShow] = useState(false);
-  const [file, setFile] = useState(searchAd.imageUrl);
+  const [file, setFile] = useState();
   const [updateSearch, setUpdateSearch] = useState(searchAd);
 
   const handleShow = () => {
@@ -28,9 +28,10 @@ const EditSearchCard = ({ element }) => {
       typeJob: selectedOption.map((el) => el.value),
     });
   };
-  // console.log("setUpdateSearch",updateSearch );
+  // console.log("setUpdateSearch",updateSearch.length );
   const handleSave = () => {
     setShow(false);
+    // console.log("setUpdateSearch",selectedOption.length );
     dispatch(updateSearchById(element._id, file, updateSearch));
   };
   const handleClose = () => {
@@ -120,8 +121,6 @@ const EditSearchCard = ({ element }) => {
               <input
                 style={{}}
                 type="file"
-                placeholder="..."
-                name="name"
                 onChange={(e) => setFile(e.target.files[0])}
               />
             </div>

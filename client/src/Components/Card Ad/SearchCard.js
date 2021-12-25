@@ -95,7 +95,6 @@ const SearchCard = ({el}) => {
             icon={true?regularstar:solidstar}
           />
           {true?<EditSearchCard element={el} />
-            
           :null}
            {true?<button onClick={handelDelete} style={{backgroundColor: "#f8f9fa", border:'none'}}><FontAwesomeIcon
           color="gray"

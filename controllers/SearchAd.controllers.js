@@ -40,6 +40,8 @@ exports.addNewSearchAd = async (req, res) => {
     const newSearchAd = new Search_Ad({
       ...req.body,
       Auth: req.user._id,
+      name:req.user.name,
+      email:req.user.email,
       imageUrl: imageUrl,
     });
     await newSearchAd.save();
