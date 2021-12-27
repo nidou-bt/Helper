@@ -6,19 +6,14 @@ const workAdSchema = new Schema({
     type: String,
     required: true,
   },
-  lastName: {
-    type: String,
-    required: true,
-  },
   titre: {
     type: String,
     required: true,
   },
-  // typeJob: {
-  //   type: Array,
-  //   required: true,
-  //   enum:["nettoyage","plomberie","électricien","transport","peinture","construction","Autres" ]
-  //   },
+  email: {
+    type: String,
+    required: true,
+  },
   typeJob: { type: Array, default: [], required: true },
   description: {
     type: String,

@@ -7,9 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchById, updateSearchById } from "../../JS/actions/searchAd";
-
+import "./Card.css";
 const EditSearchCard = ({ element }) => {
-
   const searchAd = useSelector((state) => state.searchReducer.searchAd);
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState([]);
@@ -25,23 +24,36 @@ const EditSearchCard = ({ element }) => {
     setUpdateSearch({
       ...updateSearch,
       [e.target.name]: e.target.value,
-      typeJob: selectedOption.map((el) => el.value),
     });
   };
-  // console.log("setUpdateSearch",updateSearch.length );
   const handleSave = () => {
+    let T2 = [];
+    selectedOption.forEach((el) => T2.push(el.value));
+    let obj = searchAd;
+    obj.adresse = updateSearch.adresse
+      ? updateSearch.adresse
+      : searchAd.adresse;
+    obj.phone = updateSearch.phone ? updateSearch.phone : searchAd.phone;
+    obj.typeJob =
+      selectedOption && selectedOption.length > 0 ? T2 : searchAd.typeJob;
+    obj.bio = updateSearch.bio ? updateSearch.bio : searchAd.bio;
+    dispatch(updateSearchById(element._id, file, obj));
     setShow(false);
-    // console.log("setUpdateSearch",selectedOption.length );
-    dispatch(updateSearchById(element._id, file, updateSearch));
+    setUpdateSearch({});
   };
   const handleClose = () => {
+    setSelectedOption([]);
     setShow(false);
   };
   return (
     <div>
       <button
         onClick={handleShow}
-        style={{ backgroundColor: "#f8f9fa", border: "none", marginR: "-3px" }}
+        style={{
+          backgroundColor: "#f8f9fa",
+          border: "none",
+          marginRight: "-3px",
+        }}
       >
         <FontAwesomeIcon color="gray" className="btnicon" icon={faEdit} />
       </button>
@@ -85,13 +97,31 @@ const EditSearchCard = ({ element }) => {
                 onChange={handelChange}
               />
             </div>
-            <Select
-              options={typeJobTab}
-              isMulti
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
-              style={{ width: "50px" }}
-            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+                margin: "5px",
+              }}
+            >
+              <p>typeJob</p>
+
+              <Select
+                options={typeJobTab}
+                isMulti
+                defaultValue={
+                  typeJobTab && searchAd && searchAd.typeJob
+                    ? typeJobTab.filter((el) =>
+                        searchAd.typeJob.includes(el.value)
+                      )
+                    : []
+                }
+                onChange={setSelectedOption}
+                className="styleSelected"
+              />
+            </div>
+
             <div
               style={{
                 display: "flex",
@@ -124,7 +154,6 @@ const EditSearchCard = ({ element }) => {
                 onChange={(e) => setFile(e.target.files[0])}
               />
             </div>
-            {selectedOption.map((el) => console.log("el", el.value))}
           </div>
         </Modal.Body>
         <Modal.Footer>

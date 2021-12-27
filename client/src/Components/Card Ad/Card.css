@@ -4,4 +4,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;}
 
-    
+    .styleSelected{
+        width: 200px;
+    }

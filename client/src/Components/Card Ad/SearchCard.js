@@ -1,5 +1,5 @@
 import React from 'react'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import "./Card.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,6 +18,7 @@ import { deleteSearchById } from '../../JS/actions/searchAd';
 
 // ilawaj 3ala 5idma
 const SearchCard = ({el}) => {
+  const user = useSelector(state => state.userReducer.user)
   const dispatch = useDispatch()
   const handelDelete=()=>{
     console.log("delete")
@@ -94,9 +95,9 @@ const SearchCard = ({el}) => {
             className="btnicon"
             icon={true?regularstar:solidstar}
           />
-          {true?<EditSearchCard element={el} />
+          {user&&user._id==el.Auth?<EditSearchCard element={el} />
           :null}
-           {true?<button onClick={handelDelete} style={{backgroundColor: "#f8f9fa", border:'none'}}><FontAwesomeIcon
+           {user&&user._id==el.Auth?<button onClick={handelDelete} style={{backgroundColor: "#f8f9fa", border:'none'}}><FontAwesomeIcon
           color="gray"
           className="btnicon"
           icon={faTrashAlt}

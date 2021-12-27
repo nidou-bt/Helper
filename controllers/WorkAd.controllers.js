@@ -23,6 +23,8 @@ exports.addnewWorkAd = async (req, res) => {
     const newWorkAd = new Work_Ad({
       ...req.body,
       Auth: req.user._id,
+      name:req.user.name,
+      email:req.user.email,
       imageUrl: imageUrl,
     });
     await newWorkAd.save();
