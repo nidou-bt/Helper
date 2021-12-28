@@ -39,6 +39,13 @@ router.get("/getname", isAuth,isAdmin, getUserByName);
 router.delete("/delete/:id", isAuth, isAdmin,deleteUserById);
 //update user by id
 router.put("/update", isAuth, updateoneUserByToken);
+// current
+router.get("/current",isAuth,(req,res)=>{
+  res.send({msg:"current", user:req.user})
+})
+
+
+//favorite
 //update favorit Work_Ad by id
 router.put("/work/favorit",isAuth,updateFavoritWork)
 //delete favorit work_Ad by id
@@ -47,10 +54,6 @@ router.put("/work/nofavorit",isAuth,updateNoFavoritWork)
 router.put("/search/favorit",isAuth,updateFavoritSearch)
 //delete favorit search_Ad by id
 router.put("/search/nofavorit",isAuth,updateNoFavoritSearch)
-// current
-router.get("/current",isAuth,(req,res)=>{
-  res.send({msg:"current", user:req.user})
-})
 
 //export router
 module.exports = router;

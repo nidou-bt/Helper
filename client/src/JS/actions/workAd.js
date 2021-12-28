@@ -5,11 +5,7 @@ import {
   LOAD_WORK,
 } from "../constants/workAd";
 import axios from "axios";
-const config = {
-  headers: {
-    authorization: localStorage.getItem("token"),
-  },
-};
+
 //get all work ad
 export const getAllWork = () => async (dispatch) => {
   dispatch({ type: LOAD_WORK });
@@ -22,20 +18,20 @@ export const getAllWork = () => async (dispatch) => {
   }
 };
 //get one work ad by id
-// export const getWorkById = (id) => async (dispatch) => {
-//     const config = {
-//       headers: {
-//         authorization: localStorage.getItem("token"),
-//       },
-//     };
-//     try {
-//         let { data } = await axios.get(`/api/workad/getid/${id}`, config);
-//         dispatch({type: GET_ONE_WORK, payload:data})
-//     } catch (error) {
-//         console.log("error",error)
-//         dispatch({type:FAIL_WORK, payload:error.response.data});
-//     }
-// }
+export const getWorkById = (id) => async (dispatch) => {
+    const config = {
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+    };
+    try {
+        let { data } = await axios.get(`/api/workad/getid/${id}`, config);
+        dispatch({type: GET_ONE_WORK, payload:data})
+    } catch (error) {
+        console.log("error",error)
+        dispatch({type:FAIL_WORK, payload:error.response.data});
+    }
+}
 //get all work ad by auth id
 export const getAllWorkByAuth = () => async (dispatch) => {
   const config = {
@@ -93,3 +89,31 @@ export const addWorkAd = (workAd, file, navigate) => async (dispatch) => {
 };
 
 //update one work ad by id
+export const updateWorkAd=(id, file, updateWork)=>async(dispatch)=>{
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  let formData = new FormData();
+  formData.append("titre", updateWork.titre);
+  formData.append("adresse", updateWork.adresse);
+  formData.append("description", updateWork.description);
+  formData.append("phone", updateWork.phone);
+  updateWork.typeJob.forEach((el, i) =>
+    formData.append(`typeJob[${i}]`, updateWork.typeJob[i])
+  );
+  if(file){
+    Array.from(file).forEach((el) => formData.append("WorkImg", el));
+  }
+
+  try {
+    console.log("update")
+    await axios.put(`/api/workad/update/${id}`,formData,config)
+    dispatch(getAllWork());
+  } catch (error) {
+    console.log("errorrr", error);
+    dispatch({ type: FAIL_WORK, payload: error.response.data });
+
+  }
+}

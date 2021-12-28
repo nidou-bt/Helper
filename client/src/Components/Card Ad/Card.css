@@ -4,6 +4,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;}
 
-    .styleSelected{
+.styleSelected{
         width: 200px;
     }
+.carouseledit{
+    width:150px;
+}

@@ -91,21 +91,8 @@ exports.getSearchByAuthId = async (req, res) => {
 //update one work ad by id
 exports.updateOneSearchById = async (req, res) => {
   let findSearch = await Search_Ad.findById(req.params.id);
-  if (req.body.adresse != null) {
-    findSearch.adresse = req.body.adresse;
-  }
-  if (req.body.phone != null) {
-    findSearch.phone = req.body.phone;
-  }
-  if (req.body.bio != null) {
-    findSearch.bio = req.body.bio;
-  }
-  if (req.body.SearchImg != null) {
-    findSearch.SearchImg = req.body.SearchImg;
-  }
   try {
     //verified of Id
-    
     if (!findSearch) {
       return res
         .status(400)
@@ -123,6 +110,8 @@ exports.updateOneSearchById = async (req, res) => {
     let imageUrl = "";
     if (req.file) {
       imageUrl = req.file.filename;
+    }else{
+      imageUrl = findSearch.filename
     }
     //update
     let Sos = await Search_Ad.updateOne(

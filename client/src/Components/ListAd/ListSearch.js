@@ -10,7 +10,7 @@ const ListSearch = () => {
         <div>
         {isLoad?<Loading/>:
         isError?<p>error</p>:
-        searchList.length===0?<p>there is no Search Ad to show </p>:
+        searchList.length===0?<h4>there is no Search Ad to show </h4>:
         <div style={{display:'flex',flexWrap:'wrap', justifyContent:"space-evenly"}}>
         {searchList.map((el)=><SearchCard el={el} key={el._id}/> )}
         </div>}

@@ -7,14 +7,35 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import "./Card.css";
-const EditWorkCard = () => {
+import { getWorkById, updateWorkAd } from "../../JS/actions/workAd";
+const EditWorkCard = ({element}) => {
+  const dispatch = useDispatch()
+  const workAd = useSelector(state => state.workReducer.workAd)
+  const [updateWork, setUpdateWork] = useState({})
+  const [selectedOption, setSelectedOption] = useState([]);
   const [show, setShow] = useState(false);
-const [file, setFile] = useState()
+  const [file, setFile] = useState()
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () =>{ 
+    dispatch(getWorkById(element._id))
+    setShow(true)};
   const handelChange = (e) => {
-    
+    setUpdateWork({...updateWork, [e.target.name]: e.target.value})
   };
+const handleUpdate=()=>{
+  let T2 = [];
+  selectedOption.forEach((el) => T2.push(el.value));
+let obj=workAd;
+obj.titre=updateWork.titre?updateWork.titre:workAd.titre
+obj.adresse=updateWork.adresse?updateWork.adresse:workAd.adresse
+obj.description=updateWork.description?updateWork.description:workAd.description
+obj.phone=updateWork.phone?updateWork.phone:workAd.phone
+obj.typeJob=selectedOption && selectedOption.length > 0 ? T2:workAd.typeJob
+
+console.log("obj",obj)
+  dispatch(updateWorkAd(element._id, file, obj))
+  setShow(false);
+}
   return (
     <div>
       <button
@@ -23,13 +44,14 @@ const [file, setFile] = useState()
           backgroundColor: "#f8f9fa",
           border: "none",
           marginRight: "-3px",
+          marginTop:'10px'
         }}
       >
         <FontAwesomeIcon color="gray" className="btnicon" icon={faEdit} />
       </button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{element._id}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div
@@ -100,12 +122,41 @@ const [file, setFile] = useState()
               onChange={handelChange}
             />
           </div>
-          <div>
+          <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+                margin: "5px",
+              }}
+            >
+              <p>typeJob</p>
+
+              <Select
+                options={typeJobTab}
+                isMulti
+                defaultValue={
+                  typeJobTab&&workAd&&workAd.typeJob?
+                  typeJobTab.filter((el) =>
+                        workAd.typeJob.includes(el.value)
+                      ):
+                   []
+                }
+                onChange={setSelectedOption}
+                className="styleSelected"
+              />
+            </div>
+          <div style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+                margin: "5px",
+              }}>
           <p>images</p>
             <input
               style={{}}
               type="file"
-            onChange={(e) => setFile(e.target.files[0])}
+              onChange={(e) => setFile(e.target.files)} multiple
             />
           </div>
 
@@ -114,8 +165,8 @@ const [file, setFile] = useState()
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={handleUpdate}>
+            Update Changes
           </Button>
         </Modal.Footer>
       </Modal>

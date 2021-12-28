@@ -15,15 +15,31 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import EditSearchCard from './EditSearchCard';
 import { deleteSearchById } from '../../JS/actions/searchAd';
+import { addFSearch, deleteFSearch} from '../../JS/actions/favorit';
+import Loading from '../Loading';
 
 // ilawaj 3ala 5idma
 const SearchCard = ({el}) => {
   const user = useSelector(state => state.userReducer.user)
+  const isLoad= useSelector(state => state.userReducer.isLoad)
   const dispatch = useDispatch()
   const handelDelete=()=>{
     console.log("delete")
     dispatch(deleteSearchById(el._id))
   }
+  const handelAddFavorit=()=>{
+    console.log("add Favorit", el._id)
+    let favoritSA={F_searchId:el._id }
+    dispatch(addFSearch(favoritSA))
+  }
+  const handelDeleteFavorit=()=>{
+    console.log("delete Favorit", el._id)
+    let favoritSAD={F_searchId:el._id }
+    dispatch(deleteFSearch(favoritSAD))
+  }
+if(isLoad){
+  return <Loading/>
+}
     return (
         <div style={{marginTop:"10px"}} >
       <div
@@ -56,7 +72,7 @@ const SearchCard = ({el}) => {
             }}
           >
             <span style={{ fontSize: "19px", fontWeight: "600" }}>
-              {el.name} {el.LastName} name and last name
+              {el.name} 
             </span>
             <span style={{ margin: "4px" }}>
               <FontAwesomeIcon
@@ -86,15 +102,22 @@ const SearchCard = ({el}) => {
                 className="btnicon"
                 icon={faEnvelope}
               />
-              nidhal@gmail.com
+              {el.email}
             </span>
           </div>
-         <div style={{display:'flex',flexDirection:'column',alignItems:'flex-end',gap:'10px'}}> <FontAwesomeIcon
-            color={true?"gray":"orange"}
-            size="lg"
-            className="btnicon"
-            icon={true?regularstar:solidstar}
-          />
+         <div style={{display:'flex',flexDirection:'column',alignItems:'flex-end',gap:'10px'}}>{user&&user.F_Search.includes(el._id)?
+         <button onClick={handelDeleteFavorit} style={{border:'none', backgroundColor: "#f8f9fa",marginRight:"-4px"}}> <FontAwesomeIcon
+         color={"orange"}
+         size="lg"
+         className="btnicon"
+         icon={solidstar}
+       /></button>:<button onClick={handelAddFavorit} style={{border:'none', backgroundColor: "#f8f9fa",marginRight:"-4px"}} > <FontAwesomeIcon
+       color={"gray"}
+       size="lg"
+       className="btnicon"
+       icon={regularstar}
+     /></button>
+         }
           {user&&user._id==el.Auth?<EditSearchCard element={el} />
           :null}
            {user&&user._id==el.Auth?<button onClick={handelDelete} style={{backgroundColor: "#f8f9fa", border:'none'}}><FontAwesomeIcon

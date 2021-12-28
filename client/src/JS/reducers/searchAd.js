@@ -9,7 +9,6 @@ const initialState = {
   searchAd: {},
   errors: null,
   isLoad: false,
-  isAuth: false,
 };
 const searchReducer = (state = initialState, { type, payload }) => {
   switch (type) {

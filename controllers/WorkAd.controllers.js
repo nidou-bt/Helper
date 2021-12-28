@@ -93,19 +93,21 @@ exports.deleteManyWorkByAuth = async (req, res) => {
 exports.updateOneWorkById = async (req, res) => {
   try {
     let imageUrl = [];
-    if (req.files) {
-      imageUrl = req.files.map(el=>el.filename);
-    }
     //verified of Id
     let findWork = await Work_Ad.findById(req.params.id);
+    //verified img
+    if (req.files.length === 0) {
+       imageUrl=findWork.imageUrl
+    }else{
+      imageUrl = req.files.map(el=>el.filename);
+    }
     if (!findWork) {
       return res
         .status(400)
         .send({ errors: [{ msg: "no  Work Ad with this id" }] });
     }
     //verified id of user
-    // console.log("findWork.Auth.toString()", findWork.Auth.toString());
-    // console.log("req.user._id", req.user._id.toString());
+
     if (findWork.Auth.toString() !== req.user._id.toString()) {
       return res
         .status(400)

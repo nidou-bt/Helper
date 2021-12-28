@@ -11,6 +11,7 @@ const userSchema=new Schema({
     },
     role:{
         type:Number,
+        enum : [0,1],
         default:0
     },
     email:{
@@ -21,11 +22,11 @@ const userSchema=new Schema({
         type: String,
         required: true,
       },
-    F_job:[{
+    F_Search:[{
         type: Schema.Types.ObjectId,
          ref: 'Search_Ad'
     }],
-    F_search:[{
+    F_Work:[{
         type: Schema.Types.ObjectId,
          ref: 'Work_Ad'
     }]
