@@ -2,6 +2,7 @@ import {
   CURRENT_USER,
   FAIL_USER,
   GET_USER,
+  GET_USERS,
   LOAD_USER,
   LOGIN_USER,
   LOGOUT_USER,
@@ -43,7 +44,7 @@ export const current = () => async (dispatch) => {
     let { data } = await axios.get("/api/user/current", config);
     dispatch({ type: CURRENT_USER, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.response.data });
+    dispatch({ type: FAIL_USER, payload: error.data });
   }
 };
 //Logout
@@ -61,10 +62,10 @@ export const getUser = () => async (dispatch) => {
   };
   dispatch({ type: LOAD_USER });
   try {
-    let { data } = await axios.get("api/user/gettoken", config);
+    let { data } = await axios.get("/api/user/gettoken", config);
     dispatch({ type: GET_USER, payload: data.user });
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.response.data });
+    dispatch({ type: FAIL_USER, payload: error.data });
   }
 };
 
@@ -79,6 +80,38 @@ export const updateUser = (user) => async (dispatch) => {
     await axios.put("/api/user/update", user, config);
     dispatch(getUser());
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.response.data });
+    dispatch({ type: FAIL_USER, payload: error.data });
   }
 };
+//get all users
+export const getUsers=()=>async(dispatch)=>{
+  let config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  dispatch({ type: LOAD_USER });
+  try {
+    let { data } = await axios.get("/api/user/users", config);
+    console.log("data",data)
+    dispatch({ type: GET_USERS, payload: data });
+  } catch (error) {
+    dispatch({ type: FAIL_USER, payload: error.data });
+  }
+}
+//delete one user
+
+export const deleteUser=(id)=>async(dispatch)=>{
+  let config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  dispatch({ type: LOAD_USER });
+  try {
+    await axios.delete(`/api/user/delete/${id}`, config);
+    dispatch(getUsers())
+  } catch (error) {
+    dispatch({ type: FAIL_USER, payload: error.data });
+  }
+}

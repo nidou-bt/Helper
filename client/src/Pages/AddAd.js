@@ -4,10 +4,11 @@ import AddWork from '../Components/AddAd/AddWork'
 
 const AddAd = () => {
     return (
-        <div>
-            addAd
+        <div style={{display:'flex', justifyContent:'space-around'}}>
             <AddSearch/>
             <AddWork/>
+
+            
         </div>
     )
 }

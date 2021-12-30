@@ -47,11 +47,12 @@ if(isLoad){
           width: "400px",
           height:'300px',
           backgroundColor: "#f8f9fa",
-          margin: "10px auto",
+          margin: "20px ",
           borderRadius: "10px",
           padding: "15px",
           display: "flex",
           flexDirection: "column",
+          boxShadow:'0px 0px 20px 1px'
         }}
       >
         <div style={{ display: "flex", flexDirection: "row" }}>
@@ -118,9 +119,9 @@ if(isLoad){
        icon={regularstar}
      /></button>
          }
-          {user&&user._id==el.Auth?<EditSearchCard element={el} />
+          {user&&user._id===el.Auth?<EditSearchCard element={el} />
           :null}
-           {user&&user._id==el.Auth?<button onClick={handelDelete} style={{backgroundColor: "#f8f9fa", border:'none'}}><FontAwesomeIcon
+           {user&&user._id===el.Auth?<button onClick={handelDelete} style={{backgroundColor: "#f8f9fa", border:'none'}}><FontAwesomeIcon
           color="gray"
           className="btnicon"
           icon={faTrashAlt}

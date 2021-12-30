@@ -5,6 +5,7 @@ import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import "./Add.css";
 import { addSearchAd } from "../../JS/actions/searchAd";
+
 const AddSearch = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,49 +34,70 @@ const AddSearch = () => {
 
   return (
     <div>
-      Add Search
-      <div>
-        <p>adresse</p>
-        <input
-          type="text"
+      <div style={{display:'flex', justifyContent:'center', marginTop:'20px' }}>
+      <div className="screen-1">
+        <div className="email">
+          <label htmlFor="email">Adresse</label>
+          <div className="sec-2">
+            <ion-icon name="mail-outline" />
+            <input type="text"
           placeholder="..."
           name="adresse"
-          onChange={handelChange}
-        />
-      </div>
-      <div>
-        <p>phone</p>
-        <input
-          type="number"
+          onChange={handelChange} />
+          </div>
+        </div>
+        <div className="password">
+          <label htmlFor="password">Phone</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline" />
+            <input className="pas" type="number"
           placeholder="..."
           name="phone"
-          onChange={handelChange}
-        />
-      </div>
-      <div>
-        <p>typeJob</p>
-        <Select
+          onChange={handelChange}/>
+            <ion-icon className="show-hide" name="eye-outline" />
+          </div>
+        </div>
+        <div className="password">
+          <label htmlFor="password">bio</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline" />
+            <input className="pas" type="text"
+          placeholder="..."
+          name="bio"
+          onChange={handelChange}/>
+            <ion-icon className="show-hide" name="eye-outline" />
+          </div>
+        </div>
+        <div className="password">
+          <label htmlFor="password">type Job</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline" />
+            <Select
           options={typeJobTab}
           isMulti
           defaultValue={selectedOption}
           onChange={setSelectedOption}
-          className="styleSelected"
+          className="styleSelectedAdd"
         />
+            <ion-icon className="show-hide" name="eye-outline" />
+          </div>
+        </div>
+        <div className="password">
+          <label htmlFor="password">Image</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline" />
+        <input className="pas" type="text"
+          type="file" onChange={(e) => setFile(e.target.files[0])}/>
+            <ion-icon className="show-hide" name="eye-outline" />
+          </div>
+        </div>
+        <button className="login" type="submit"
+          style={{ marginTop: "5px", marginLeft: "50px" }}
+          onClick={handelSave}>Add New Search</button>
+  
       </div>
-      <div>
-        <p>bio </p>
-        <input
-          type="text"
-          placeholder="..."
-          name="bio"
-          onChange={handelChange}
-        />
-      </div>
-      <div>
-        <p>image</p>
-        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-      </div>
-      <button onClick={handelSave}>Add new Ad</button>
+    </div>
+      
     </div>
   );
 };

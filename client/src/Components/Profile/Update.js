@@ -11,8 +11,7 @@ const Update = () => {
   const handelChange = (e) => {
     setUserU({ ...userU,[e.target.name]: e.target.value });
   };
-  const handelSave = (e) => {
-    // e.preventDefault();
+  const handelSave = () => {
     dispatch(updateUser(userU));
     setUserU({});
   };

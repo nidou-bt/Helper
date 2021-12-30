@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './Pages.css'
 
 
 const Home = () => {
@@ -8,7 +8,8 @@ const Home = () => {
         <div>
 
            Home 
-           no search card 
+           
+
         </div>
     )
 }

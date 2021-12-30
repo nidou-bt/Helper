@@ -1,7 +1,10 @@
 .footer{
-
 text-align: center;
+margin-top: 50px;
 }
+
+
+
 .centerLoading{
     display: flex;
   justify-content: center;

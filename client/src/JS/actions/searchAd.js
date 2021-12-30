@@ -13,7 +13,7 @@ export const getAllSearch = () => async (dispatch) => {
     let { data } = await axios.get("/api/searchad/searchads");
     dispatch({ type: GET_ALL_SEARCH, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_SEARCH, payload: error.response.data });
+    dispatch({ type: FAIL_SEARCH, payload: error.response.data});
     console.log("error",error);
   }
 };
@@ -28,7 +28,7 @@ export const getSearchById = (id) => async (dispatch) => {
     let { data } = await axios.get(`/api/searchad/getid/${id}`, config);
     dispatch({ type: GET_ONE_SEARCH, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_SEARCH, payload: error.response.data });
+    dispatch({ type: FAIL_SEARCH, payload: error.data });
   }
 };
 //get all Search id by auth id
@@ -43,7 +43,7 @@ export const getAllSearchByAuth = () => async (dispatch) => {
     let { data } = await axios.get("/api/searchad/getauth", config);
     dispatch({ type: GET_ALL_SEARCH, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_SEARCH, payload: error.response.data });
+    dispatch({ type: FAIL_SEARCH, payload: error.data });
   }
 };
 //delete Search ad by id

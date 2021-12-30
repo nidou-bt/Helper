@@ -59,7 +59,7 @@ const EditSearchCard = ({ element }) => {
       </button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>updating Search {element._id} </Modal.Title>
+          <Modal.Title>updating Search</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -71,7 +71,7 @@ const EditSearchCard = ({ element }) => {
                 margin: "5px",
               }}
             >
-              <p>adresse</p>
+              <p>Adresse</p>
               <input
                 style={{}}
                 type="text"
@@ -88,7 +88,7 @@ const EditSearchCard = ({ element }) => {
                 margin: "5px",
               }}
             >
-              <p>phone</p>
+              <p>Phone</p>
               <input
                 style={{}}
                 type="number"
@@ -105,7 +105,7 @@ const EditSearchCard = ({ element }) => {
                 margin: "5px",
               }}
             >
-              <p>typeJob</p>
+              <p>Type Job</p>
 
               <Select
                 options={typeJobTab}
@@ -130,7 +130,7 @@ const EditSearchCard = ({ element }) => {
                 margin: "5px",
               }}
             >
-              <p>bio</p>
+              <p>Bio</p>
               <input
                 style={{}}
                 type="text"
@@ -147,7 +147,7 @@ const EditSearchCard = ({ element }) => {
                 margin: "5px",
               }}
             >
-              <p>image</p>
+              <p>Image</p>
               <input
                 style={{}}
                 type="file"

@@ -67,7 +67,7 @@ exports.deleteOneWorkById = async (req, res) => {
         .send({ errors: [{ msg: "no  Work Ad with this id" }] });
     }
     //verified id of user
-    if (findWork.Auth.toString() !== req.user._id.toString()) {
+    if (findWork.Auth.toString() !== req.user._id.toString()&&req.user.role!==1) {
       return res
         .status(400)
         .send({ errors: [{ msg: "no  Authorizat to delete this Work Ad" }] });

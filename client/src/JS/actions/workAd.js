@@ -13,25 +13,25 @@ export const getAllWork = () => async (dispatch) => {
     let { data } = await axios.get("/api/workad/workads");
     dispatch({ type: GET_ALL_WORK, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_WORK, payload: error.response.data });
+    dispatch({ type: FAIL_WORK, payload: error.data });
     console.log("error");
   }
 };
 //get one work ad by id
 export const getWorkById = (id) => async (dispatch) => {
-    const config = {
-      headers: {
-        authorization: localStorage.getItem("token"),
-      },
-    };
-    try {
-        let { data } = await axios.get(`/api/workad/getid/${id}`, config);
-        dispatch({type: GET_ONE_WORK, payload:data})
-    } catch (error) {
-        console.log("error",error)
-        dispatch({type:FAIL_WORK, payload:error.response.data});
-    }
-}
+  const config = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+  try {
+    let { data } = await axios.get(`/api/workad/getid/${id}`, config);
+    dispatch({ type: GET_ONE_WORK, payload: data });
+  } catch (error) {
+    console.log("error", error);
+    dispatch({ type: FAIL_WORK, payload: error.data });
+  }
+};
 //get all work ad by auth id
 export const getAllWorkByAuth = () => async (dispatch) => {
   const config = {
@@ -44,7 +44,7 @@ export const getAllWorkByAuth = () => async (dispatch) => {
     let { data } = await axios.get("/api/workad/getauth", config);
     dispatch({ type: GET_ALL_WORK, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_WORK, payload: error.response.data });
+    dispatch({ type: FAIL_WORK, payload: error.data });
   }
 };
 //delete work ad by id
@@ -59,7 +59,7 @@ export const deleteWorkById = (id) => async (dispatch) => {
     dispatch(getAllWork());
   } catch (error) {
     console.log("error", error);
-    dispatch({ type: FAIL_WORK, payload: error.response.data });
+    dispatch({ type: FAIL_WORK, payload: error.data });
   }
 };
 //add one work ad by id
@@ -84,12 +84,12 @@ export const addWorkAd = (workAd, file, navigate) => async (dispatch) => {
     navigate("/profil");
   } catch (error) {
     console.log("error", error);
-    dispatch({ type: FAIL_WORK, payload: error.response.data });
+    dispatch({ type: FAIL_WORK, payload: error.data });
   }
 };
 
 //update one work ad by id
-export const updateWorkAd=(id, file, updateWork)=>async(dispatch)=>{
+export const updateWorkAd = (id, file, updateWork) => async (dispatch) => {
   const config = {
     headers: {
       authorization: localStorage.getItem("token"),
@@ -103,17 +103,14 @@ export const updateWorkAd=(id, file, updateWork)=>async(dispatch)=>{
   updateWork.typeJob.forEach((el, i) =>
     formData.append(`typeJob[${i}]`, updateWork.typeJob[i])
   );
-  if(file){
+  if (file) {
     Array.from(file).forEach((el) => formData.append("WorkImg", el));
   }
 
   try {
-    console.log("update")
-    await axios.put(`/api/workad/update/${id}`,formData,config)
+    await axios.put(`/api/workad/update/${id}`, formData, config);
     dispatch(getAllWork());
   } catch (error) {
-    console.log("errorrr", error);
-    dispatch({ type: FAIL_WORK, payload: error.response.data });
-
+    dispatch({ type: FAIL_WORK, payload: error.data });
   }
-}
+};

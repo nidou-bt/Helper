@@ -24,47 +24,39 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form style={{ margin: "20px" }}>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1" style={{ marginLeft: "10px" }}>
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
+    <div style={{display:'flex', justifyContent:'center', marginTop:'20px' }}>
+      <div className="screen-1">
+        
+        <div className="email">
+          <label htmlFor="email">Email Address</label>
+          <div className="sec-2">
+            <ion-icon name="mail-outline" />
+            <input type="email"
             placeholder="Enter email"
             required
             name="email"
             onChange={handelChange}
-            value={user.email}
-          />
+            value={user.email} />
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1" style={{ marginLeft: "10px" }}>
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
+        <div className="password">
+          <label htmlFor="password">Password</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline" />
+            <input className="pas" type="password"
             placeholder="Password"
             required
             name="password"
             onChange={handelChange}
-            value={user.password}
-          />
+            value={user.password} />
+            <ion-icon className="show-hide" name="eye-outline" />
+          </div>
         </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
+        <button className="login" type="submit"
           style={{ marginTop: "5px", marginLeft: "50px" }}
-          onClick={(e) => handelLogin(e)}
-        >
-          LOGIN
-        </button>
-      </form>
+          onClick={(e) => handelLogin(e)}>Login</button>
+  
+      </div>
     </div>
   );
 };

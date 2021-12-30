@@ -62,7 +62,7 @@ exports.deleteOneSearchById = async (req, res) => {
         .send({ errors: [{ msg: "no  Search Ad with this id" }] });
     }
     //verified id of user
-    if (findSearch.Auth.toString() !== req.user._id.toString()) {
+    if (findSearch.Auth.toString() !== req.user._id.toString()&&req.user.role!==1) {
       return res
         .status(400)
         .send({

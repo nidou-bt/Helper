@@ -9,8 +9,13 @@ const MyAdsWorks = () => {
         dispatch(getAllWorkByAuth())
     }, [])
     return (
-        <div>
-            my ads works
+        <div style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "start",
+            marginLeft:'2.5%'
+          }}>
+            
             {workList.map((el)=><WorkCard el={el} key={el._id} />)}
         </div>
     )

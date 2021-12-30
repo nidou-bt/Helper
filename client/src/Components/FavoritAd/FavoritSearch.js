@@ -13,7 +13,6 @@ const FavoritSearch = () => {
   }
   return (
     <div>
-      hi
       {searchList && user
         ? searchList.map((el) =>
             user.F_Search.includes(el._id) ? (

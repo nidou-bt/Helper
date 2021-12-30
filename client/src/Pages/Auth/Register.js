@@ -30,84 +30,66 @@ const Register = () => {
   };
   return (
     <div>
-      <form style={{ margin: "20px" }}>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1" style={{ marginLeft: "10px" }}>
-            Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
+      <div style={{display:'flex', justifyContent:'center', marginTop:'20px' }}>
+      <div className="screen-1">
+        <div className="email">
+          <label htmlFor="email">Name</label>
+          <div className="sec-2">
+            <ion-icon name="mail-outline" />
+            <input type="text" className="pas" 
             placeholder="Enter your name"
             required
             name="name"
             onChange={handelChange}
-            value={user.name}
-          />
-          <small id="emailHelp" className="form-text text-muted">
-            Required
-          </small>
+            value={user.name} />
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1" style={{ marginLeft: "10px" }}>
-            Last Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="LastName"
+        <div className="password">
+          <label htmlFor="password">Last Name</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline" />
+            <input type="text"
+            className="pas" 
             placeholder="Enter your last name"
             name="LastName"
             onChange={handelChange}
-            value={user.LastName}
-          />
-          <small id="emailHelp" className="form-text text-muted">
-            Required
-          </small>
+            value={user.LastName} />
+            <ion-icon className="show-hide" name="eye-outline" />
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1" style={{ marginLeft: "10px" }}>
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
+        <div className="password">
+          <label htmlFor="password">Email</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline" />
+            <input type="email" className="pas" 
             placeholder="Enter email"
             required
             name="email"
             onChange={handelChange}
-            value={user.email}
-          />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
+            value={user.email} />
+            <ion-icon className="show-hide" name="eye-outline" />
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1" style={{ marginLeft: "10px" }}>
-            Password
-          </label>
-          <input
+        <div className="password">
+          <label htmlFor="password">Password</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline" />
+            <input className="pas" 
             type="password"
-            className="form-control"
-            id="exampleInputPassword1"
             placeholder="Password"
             required
             name="password"
             onChange={handelChange}
-            value={user.password}
-          />
+            value={user.password} />
+            <ion-icon className="show-hide" name="eye-outline" />
+          </div>
         </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
+        <button className="login" type="submit"
           style={{ marginTop: "5px", marginLeft: "50px" }}
-          onClick={(e) => handelSave(e)}
-        >
-          Register
-        </button>
-      </form>
+          onClick={(e) => handelSave(e)}>Save</button>
+  
+      </div>
+    </div>
     </div>
   );
 };
