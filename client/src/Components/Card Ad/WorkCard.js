@@ -101,7 +101,11 @@ const WorkCard = ({ el }) => {
         >
           <h4>{el.titre ? el.titre : "titre"}</h4>
         </div>
-        <div style={{ height: "20%" }}>{el.typeJob ? el.typeJob : []}</div>
+        <div style={{ height: "20%" }}>
+        <div style={{display:'flex',justifyContent:'space-around'}}>{el.typeJob ?
+         el.typeJob.map((element,i)=>
+         <p style={{backgroundColor:'#89ba16',color:'white',padding:'3px', marginTop:"5px",marginBottom:"3px",borderRadius:'5px', width:'auto'}} key={i} >{element}</p>) : []}</div> 
+        </div>
         <div
           style={{
             height: "20%",

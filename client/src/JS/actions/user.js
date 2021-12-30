@@ -44,7 +44,7 @@ export const current = () => async (dispatch) => {
     let { data } = await axios.get("/api/user/current", config);
     dispatch({ type: CURRENT_USER, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.data });
+    dispatch({ type: FAIL_USER, payload: error.response.data });
   }
 };
 //Logout
@@ -65,7 +65,7 @@ export const getUser = () => async (dispatch) => {
     let { data } = await axios.get("/api/user/gettoken", config);
     dispatch({ type: GET_USER, payload: data.user });
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.data });
+    dispatch({ type: FAIL_USER, payload: error.response.data });
   }
 };
 
@@ -80,7 +80,7 @@ export const updateUser = (user) => async (dispatch) => {
     await axios.put("/api/user/update", user, config);
     dispatch(getUser());
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.data });
+    dispatch({ type: FAIL_USER, payload: error.response.data });
   }
 };
 //get all users
@@ -90,13 +90,13 @@ export const getUsers=()=>async(dispatch)=>{
       authorization: localStorage.getItem("token"),
     },
   };
-  dispatch({ type: LOAD_USER });
+  
   try {
     let { data } = await axios.get("/api/user/users", config);
-    console.log("data",data)
     dispatch({ type: GET_USERS, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.data });
+    dispatch({ type: FAIL_USER, payload: error.response.data });
+    console.log("error",error)
   }
 }
 //delete one user
@@ -112,6 +112,6 @@ export const deleteUser=(id)=>async(dispatch)=>{
     await axios.delete(`/api/user/delete/${id}`, config);
     dispatch(getUsers())
   } catch (error) {
-    dispatch({ type: FAIL_USER, payload: error.data });
+    dispatch({ type: FAIL_USER, payload: error.response.data });
   }
 }

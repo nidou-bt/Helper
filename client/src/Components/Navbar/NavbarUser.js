@@ -26,10 +26,10 @@ const NavbarUser = () => {
     setAnchorEl(null);
   };
   return (
-    <div >
+    <div style={{ position:'-webkit-sticky',paddingTop: '80px'}} >
       
       <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{backgroundColor:'#717073'}}>
+      <AppBar  style={{backgroundColor:'#717073'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Helper

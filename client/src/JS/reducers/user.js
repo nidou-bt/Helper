@@ -7,7 +7,6 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   REGISTER_USER,
-
 } from "../constants/user";
 
 const initialState = {
@@ -15,19 +14,19 @@ const initialState = {
   errors: null,
   isLoad: false,
   isAuth: false,
-  users:[]
+  users: [],
 };
-const userReducer = (state =initialState, { type, payload }) => {
+const userReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_USER:
       return { ...state, isLoad: true };
     case REGISTER_USER:
-      return { ...state, isLoad: false};
+      return { ...state, isLoad: false };
     case LOGIN_USER:
       localStorage.setItem("token", payload.token);
       return { ...state, isLoad: false, user: payload.user, isAuth: true };
     case FAIL_USER:
-      return { ...state, isLoad: false };
+      return { ...state, isLoad: false,errors: payload.errors };
     case CURRENT_USER:
       return {
         ...state,
@@ -36,13 +35,12 @@ const userReducer = (state =initialState, { type, payload }) => {
         isAuth: true,
       };
     case LOGOUT_USER:
-      localStorage.removeItem("token")
+      localStorage.removeItem("token");
       return { user: null, errors: null, isLoad: false, isAuth: false };
-      return { };
-      case GET_USER:
-      return{...state, isLoad:false,user: payload }
-      case GET_USERS:
-      return{...state, isLoad:false,users: payload.Users }
+    case GET_USER:
+      return { ...state, isLoad: false, user: payload };
+    case GET_USERS:
+      return { ...state, isLoad: false, users: payload.Users };
     default:
       return state;
   }

@@ -12,7 +12,12 @@ const FavoritWork = () => {
     return <Loading />;
   }
   return (
-    <div>
+    <div style={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "start",
+      marginLeft:'2.5%'
+    }}>
       {workList && user
         ? workList.map((el) =>
             user.F_Work.includes(el._id) ? (

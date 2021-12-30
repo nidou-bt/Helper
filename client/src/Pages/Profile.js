@@ -26,7 +26,6 @@ const Profile = () => {
           <h3>{user.phone}</h3>
           </div>
           <Update />
-          
           </div>
           <MyAdSearch />
           <MyAdsWorks />

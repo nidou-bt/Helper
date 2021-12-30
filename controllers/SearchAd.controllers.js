@@ -62,13 +62,13 @@ exports.deleteOneSearchById = async (req, res) => {
         .send({ errors: [{ msg: "no  Search Ad with this id" }] });
     }
     //verified id of user
-    if (findSearch.Auth.toString() !== req.user._id.toString()&&req.user.role!==1) {
-      return res
-        .status(400)
-        .send({
-          errors: [{ msg: "not  Authorizat to delete this Search Ad" }],
-        });
-    }
+    // if (findSearch.Auth.toString() !== req.user._id.toString()&&req.user.role!==1) {
+    //   return res
+    //     .status(400)
+    //     .send({
+    //       errors: [{ msg: "not  Authorizat to delete this Search Ad" }],
+    //     });
+    // }
     await Search_Ad.deleteOne({ _id: req.params.id });
     res.status(200).send({ msg: "delete Search Ad successfull" });
   } catch (error) {

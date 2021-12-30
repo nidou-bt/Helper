@@ -13,7 +13,7 @@ export const getAllWork = () => async (dispatch) => {
     let { data } = await axios.get("/api/workad/workads");
     dispatch({ type: GET_ALL_WORK, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_WORK, payload: error.data });
+    dispatch({ type: FAIL_WORK, payload: error.response.data });
     console.log("error");
   }
 };
@@ -29,7 +29,7 @@ export const getWorkById = (id) => async (dispatch) => {
     dispatch({ type: GET_ONE_WORK, payload: data });
   } catch (error) {
     console.log("error", error);
-    dispatch({ type: FAIL_WORK, payload: error.data });
+    dispatch({ type: FAIL_WORK, payload: error.response.data });
   }
 };
 //get all work ad by auth id
@@ -44,7 +44,7 @@ export const getAllWorkByAuth = () => async (dispatch) => {
     let { data } = await axios.get("/api/workad/getauth", config);
     dispatch({ type: GET_ALL_WORK, payload: data });
   } catch (error) {
-    dispatch({ type: FAIL_WORK, payload: error.data });
+    dispatch({ type: FAIL_WORK, payload: error.response.data });
   }
 };
 //delete work ad by id
@@ -59,7 +59,7 @@ export const deleteWorkById = (id) => async (dispatch) => {
     dispatch(getAllWork());
   } catch (error) {
     console.log("error", error);
-    dispatch({ type: FAIL_WORK, payload: error.data });
+    dispatch({ type: FAIL_WORK, payload: error.response.data});
   }
 };
 //add one work ad by id
@@ -84,7 +84,7 @@ export const addWorkAd = (workAd, file, navigate) => async (dispatch) => {
     navigate("/profil");
   } catch (error) {
     console.log("error", error);
-    dispatch({ type: FAIL_WORK, payload: error.data });
+    dispatch({ type: FAIL_WORK, payload: error.response.data});
   }
 };
 
@@ -111,6 +111,6 @@ export const updateWorkAd = (id, file, updateWork) => async (dispatch) => {
     await axios.put(`/api/workad/update/${id}`, formData, config);
     dispatch(getAllWork());
   } catch (error) {
-    dispatch({ type: FAIL_WORK, payload: error.data });
+    dispatch({ type: FAIL_WORK, payload: error.response.data });
   }
 };

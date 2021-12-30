@@ -12,7 +12,12 @@ const FavoritSearch = () => {
     return <Loading />;
   }
   return (
-    <div>
+    <div style={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "start",
+      marginLeft:'1.5%'
+    }} >
       {searchList && user
         ? searchList.map((el) =>
             user.F_Search.includes(el._id) ? (

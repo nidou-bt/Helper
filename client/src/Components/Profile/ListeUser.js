@@ -7,19 +7,24 @@ import { deleteWorkById, getAllWork } from '../../JS/actions/workAd'
 import Loading from '../Loading'
 
 const ListeUser = () => {
+    const user = useSelector(state => state.userReducer.user)
     const dispatch = useDispatch()
     const users = useSelector(state => state.userReducer.users)
     const isLoad= useSelector(state => state.userReducer.isLoad)
     const searchList = useSelector(state => state.searchReducer.searchList)
     const workList = useSelector(state => state.workReducer.workList)
+    const token = localStorage.getItem("token");
 useEffect(() => {
-    dispatch(getUsers())
-    dispatch(getAllSearch())
-    dispatch(getAllWork())
-}, [])
-// const handelDelete=()=>{
-//     dispatch(deleteUser(el._id))
-// }
+    if(user&&user.role==1){
+        dispatch(getUsers())
+        dispatch(getAllSearch())
+        dispatch(getAllWork())
+        
+    }
+    
+}, [token])
+
+
     return (
         <div>
             list user
