@@ -1,4 +1,5 @@
 const express=require('express');
+const path = require("path");
 const connectDB=require('./config/connectDB')
 require("dotenv").config()
 const app=express();
@@ -13,7 +14,7 @@ app.use("/api/user", require("./router/User.router"))
 app.use("/api/workad",require("./router/WorkAd.router"))
 // Search Ad
 app.use("/api/searchad",require("./router/SearchAd.router"))
-
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 
 

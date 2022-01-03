@@ -8,7 +8,8 @@
     "start": "node server.js",
     "back": "nodemon server.js",
     "front": "cd client && npm start",
-    "dev": "concurrently \"npm run front\" \"npm run back\""
+    "dev": "concurrently \"npm run front\" \"npm run back\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [
     "react",
