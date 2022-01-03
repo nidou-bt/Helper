@@ -44,7 +44,6 @@ router.get("/current",isAuth,(req,res)=>{
   res.send({msg:"current", user:req.user})
 })
 
-
 //favorite
 //update favorit Work_Ad by id
 router.put("/work/favorit",isAuth,updateFavoritWork)

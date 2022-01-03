@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../JS/actions/user";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, login } from "../../JS/actions/user";
+import Notification from "../../Components/Notification";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const errors = useSelector(state => state.userReducer.errors)
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  useEffect(() => {
+    if (errors) {
+      dispatch(clearErrors());
+    }
+  }, [])
   const handelChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -24,6 +31,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    {errors && errors.map((el, i) => <Notification error={el} key={i} />)}
     <div style={{display:'flex', justifyContent:'center', marginTop:'20px' }}>
       <div className="screen-1">
         
@@ -58,6 +67,7 @@ const Login = () => {
   
       </div>
     </div>
+    </>
   );
 };
 

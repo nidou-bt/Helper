@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { typeJobTab } from "../Profile/data";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import "./Add.css";
 import { addSearchAd } from "../../JS/actions/searchAd";
+import Notification from "../Notification";
 
 const AddSearch = () => {
+  const errors = useSelector(state => state.searchReducer.errors)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState([]);
   const [newSearch, setNewSearch] = useState({
     adresse: "",
     phone: "",
@@ -26,14 +28,12 @@ const AddSearch = () => {
     selectedOption.forEach((el) => T2.push(el.value));
     let obj = newSearch;
     obj.typeJob = T2;
-    
-    // selectedOption.forEach((el) => newSearch.typeJob.push(el.value));
-    // console.log("typeJob",newSearch)
     dispatch(addSearchAd(obj, file, navigate));
   };
 
   return (
     <div>
+      {errors && errors.map((el, i) => <Notification error={el} key={i} />)}
       <div style={{display:'flex', justifyContent:'center', marginTop:'20px' }}>
       <div className="screen-1">
         <div className="email">
@@ -86,7 +86,7 @@ const AddSearch = () => {
           <label htmlFor="password">Image</label>
           <div className="sec-2">
             <ion-icon name="lock-closed-outline" />
-        <input className="pas" type="text"
+        <input className="pas" 
           type="file" onChange={(e) => setFile(e.target.files[0])}/>
             <ion-icon className="show-hide" name="eye-outline" />
           </div>

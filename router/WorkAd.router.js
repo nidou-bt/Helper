@@ -33,15 +33,7 @@ router.delete("/delete/:id", isAuth, deleteOneWorkById);
 router.delete("/deleteauth", isAuth,isAdmin ,deleteManyWorkByAuth);
 //update one work ad by id
 router.put("/update/:id", isAuth,upload.array("WorkImg",5), updateOneWorkById);
-//upload multiple img
-router.post("/image",upload.array("WorkImg",5),(req,res)=>{
-  console.log(req.files)
-  let imageUrl=[]
-  console.log("urlImage",imageUrl)
-  imageUrl = req.files.map(el=>el.filename)
-  console.log(imageUrl)
-  res.status(200).send({msg:"done"})
-})
+
 
 
 

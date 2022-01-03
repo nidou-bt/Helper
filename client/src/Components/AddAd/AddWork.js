@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { addWorkAd } from "../../JS/actions/workAd";
+import Notification from "../Notification";
 import { typeJobTab } from "../Profile/data";
 import "./Add.css";
 
 const AddWork = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState(null);
+  const errors = useSelector(state => state.workReducer.errors)
+  const [selectedOption, setSelectedOption] = useState([]);
   const [file, setFile] = useState();
   const [newWork, setNewWork] = useState({
     titre: "",
@@ -23,11 +25,11 @@ const AddWork = () => {
   };
   const handelSave = () => {
     selectedOption.forEach((el) => newWork.typeJob.push(el.value));
-    console.log("newWork", newWork);
     dispatch(addWorkAd(newWork, file, navigate));
   };
   return (
     <div>
+      {errors && errors.map((el, i) => <Notification error={el} key={i} />)}
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >

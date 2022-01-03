@@ -5,6 +5,7 @@ import {
   LOAD_WORK,
 } from "../constants/workAd";
 import axios from "axios";
+import { CLEAR_ERRORS } from "../constants/user";
 
 //get all work ad
 export const getAllWork = () => async (dispatch) => {
@@ -77,7 +78,10 @@ export const addWorkAd = (workAd, file, navigate) => async (dispatch) => {
   workAd.typeJob.forEach((el, i) =>
     formData.append(`typeJob[${i}]`, workAd.typeJob[i])
   );
-  Array.from(file).forEach((el, i) => formData.append("WorkImg", el));
+  if(file){
+    Array.from(file).forEach((el) => formData.append("WorkImg", el));
+  }
+  
   try {
     await axios.post("/api/workad/add", formData, config);
     dispatch(getAllWork());
@@ -114,3 +118,7 @@ export const updateWorkAd = (id, file, updateWork) => async (dispatch) => {
     dispatch({ type: FAIL_WORK, payload: error.response.data });
   }
 };
+//clear errors
+export const clearErrorsWork=()=>{
+  return ({type:CLEAR_ERRORS})
+}

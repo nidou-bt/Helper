@@ -8,26 +8,25 @@ import { getAllWork } from '../JS/actions/workAd';
 import './Pages.css'
 const ListAd = () => {
     const dispatch = useDispatch();
-    const isLoad = useSelector(state => state.searchReducer.isLoad)
+    const isLoad = useSelector(state => state.searchReducer.isLoad);
+    const [list, setList] = useState(true);
     useEffect(() => {
         dispatch(getAllSearch())
         dispatch(getAllWork())
     }, [])
-const [list, setList] = useState(true)
-    console.log("list",list)
     return (
-        <div>
-        <div style={{display:'flex', alignItems:'center', width:'50%', marginLeft:'auto', marginRight:'auto', height:'80px'}}> 
-            <h4>search list</h4>
-            <div className="switch-toggle" style={{color:'red'}}>
-            <label>
-            <input type="checkbox" defaultChecked onClick={()=>setList(!list)} />
-            <span />
+        <div  style={{minHeight:'500px'}}>
+        <div style={{display:'flex', justifyContent:'center', width:'50%', marginLeft:'auto', marginRight:'auto', height:'50px', marginTop:'30px'}}> 
+            <h4 style={{marginRight:'20px'}}>List of Helpers </h4>
+            
+            <label className="switch">
+                <input type="checkbox" defaultChecked  onClick={()=>setList(!list)}/>
+                <span className="slider round" />
             </label>
-            </div>
-            <h4>work list</h4>
+            
+            <h4 style={{marginLeft:'20px'}} >List of Researchers</h4>
         </div>
-        {isLoad?<Loading/>:list?<ListWork/>:<ListSearch/>}
+        {isLoad?<Loading/>:list?<ListWork/>:!list?<ListSearch/>:null}
         </div>
     )
 }

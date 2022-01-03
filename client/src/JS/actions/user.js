@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   CURRENT_USER,
   FAIL_USER,
   GET_USER,
@@ -90,13 +91,11 @@ export const getUsers=()=>async(dispatch)=>{
       authorization: localStorage.getItem("token"),
     },
   };
-  
   try {
     let { data } = await axios.get("/api/user/users", config);
     dispatch({ type: GET_USERS, payload: data });
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data });
-    console.log("error",error)
   }
 }
 //delete one user
@@ -114,4 +113,8 @@ export const deleteUser=(id)=>async(dispatch)=>{
   } catch (error) {
     dispatch({ type: FAIL_USER, payload: error.response.data });
   }
+}
+//clear errors
+export const clearErrors=()=>{
+  return ({type:CLEAR_ERRORS})
 }

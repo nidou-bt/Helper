@@ -40,8 +40,8 @@ exports.addNewSearchAd = async (req, res) => {
     const newSearchAd = new Search_Ad({
       ...req.body,
       Auth: req.user._id,
-      name:req.user.name,
-      email:req.user.email,
+      name: req.user.name,
+      email: req.user.email,
       imageUrl: imageUrl,
     });
     await newSearchAd.save();
@@ -100,18 +100,16 @@ exports.updateOneSearchById = async (req, res) => {
     }
     //verified id of user
     if (findSearch.Auth.toString() !== req.user._id.toString()) {
-      return res
-        .status(400)
-        .send({
-          errors: [{ msg: "not  Authorizat to update this Search Ad" }],
-        });
+      return res.status(400).send({
+        errors: [{ msg: "not  Authorizat to update this Search Ad" }],
+      });
     }
     //verified img
     let imageUrl = "";
     if (req.file) {
       imageUrl = req.file.filename;
-    }else{
-      imageUrl = findSearch.filename
+    } else {
+      imageUrl = findSearch.filename;
     }
     //update
     let Sos = await Search_Ad.updateOne(

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Auth.css";
 import { register } from "../../JS/actions/user";
+import Notification from "../../Components/Notification";
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const errors = useSelector(state => state.userReducer.errors)
   const [user, setUser] = useState({
     name: "",
     LastName: "",
@@ -30,6 +31,7 @@ const Register = () => {
   };
   return (
     <div>
+      {errors && errors.map((el, i) => <Notification error={el} key={i} />)}
       <div style={{display:'flex', justifyContent:'center', marginTop:'20px' }}>
       <div className="screen-1">
         <div className="email">

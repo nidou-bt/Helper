@@ -15,15 +15,6 @@ exports.Register = async (req, res) => {
     const saltRound = 10;
     const hashedPassword = bcrypt.hashSync(password, saltRound);
     const newUser = new User({ ...req.body });
-    //create token
-    // const token = jwt.sign(
-    //   {
-    //     _id: newUser._id,
-        
-    //   },
-    //   process.env.SECRET_KEY,
-    //   { expiresIn: "3h" }
-    // );
     //save user
     newUser.password = hashedPassword;
     await newUser.save();

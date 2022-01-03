@@ -5,6 +5,7 @@ import {
   LOAD_SEARCH,
 } from "../constants/searchAd";
 import axios from "axios";
+import { CLEAR_ERRORS } from "../constants/user";
 
 //get all Search ad
 export const getAllSearch = () => async (dispatch) => {
@@ -108,3 +109,7 @@ export const addSearchAd = (searchAd, file, navigate) => async (dispatch) => {
     dispatch({ type: FAIL_SEARCH, payload: error.response.data });
   }
 };
+//clear errors
+export const clearErrorsSearch=()=>{
+  return ({type:CLEAR_ERRORS})
+}

@@ -1,0 +1,43 @@
+
+.div1{
+  min-height: 800px;
+  background-image: url("home.jpg");
+  background-color: #cccccc;
+  background-size: cover;
+  background-position-x: 150px;
+	background-position-y: 30%;
+  margin-top: -17px;
+}
+
+  .text1 {
+    position: absolute;
+    top: 150px;
+    left: 16px;
+    font-family: Georgia, serif;
+    font-size: 50px;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    color: #717073;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    margin-left: 50px;
+    }
+  .text2 {
+    position: absolute;
+    top: 450px;
+    left: 16px;
+    font-family: Georgia, serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    color: #717073;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    margin-left: 50px;
+  }

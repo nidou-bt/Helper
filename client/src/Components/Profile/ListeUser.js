@@ -27,7 +27,7 @@ useEffect(() => {
 
     return (
         <div>
-            list user
+           <h3 style={{marginLeft:'20px'}} >List User</h3> 
 {isLoad?<Loading/>:
     <Table striped bordered hover>
         <thead>
@@ -56,7 +56,7 @@ useEffect(() => {
         
         </tbody>
     </Table> }
-    <h3>SearchTab</h3> 
+    <h3  style={{marginLeft:'20px'}}>SearchTab</h3> 
     <Table striped bordered hover>
         <thead>
         <tr>
@@ -88,7 +88,7 @@ useEffect(() => {
         
         </tbody>
     </Table>
-    <h3>workTab</h3> 
+    <h3  style={{marginLeft:'20px'}}>WorkTab</h3> 
     <Table striped bordered hover>
         <thead>
         <tr>

@@ -8,13 +8,11 @@ const ListWork = () => {
   const isLoad = useSelector((state) => state.workReducer.isLoad);
   const isError = useSelector((state) => state.workReducer.isError);
   return (
-    <div>
+    <div style={{minHeight:'500px'}}>
       {isLoad ? (
         <Loading />
-      ) : isError ? (
-        <p>error</p>
       ) : workList.length === 0 ? (
-        <h4>there is no Work Ad to show</h4>
+        <h4 style={{marginLeft:'30px'}}>There is no Work Ad to show</h4>
       ) : (
         <div
           style={{

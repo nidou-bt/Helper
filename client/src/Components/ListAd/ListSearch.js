@@ -7,13 +7,11 @@ const ListSearch = () => {
   const isLoad = useSelector((state) => state.searchReducer.isLoad);
   const isError = useSelector((state) => state.searchReducer.isError);
   return (
-    <div>
+    <div style={{minHeight:'500px'}}>
       {isLoad ? (
         <Loading />
-      ) : isError ? (
-        <p>error</p>
       ) : searchList.length === 0 ? (
-        <h4>there is no Search Ad to show </h4>
+        <h4 style={{marginLeft:'30px'}}>There is no Search Ad to show </h4>
       ) : (
         <div
           style={{

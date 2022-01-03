@@ -49,20 +49,20 @@ console.log("obj",obj)
       >
         <FontAwesomeIcon color="gray" className="btnicon" icon={faEdit} />
       </button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{marginTop:'50px'}}>
         <Modal.Header closeButton>
-          <Modal.Title>{element._id}</Modal.Title>
+          <Modal.Title><h3>Update Card</h3> </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               margin: "5px",
             }}
           >
-            <p>titre</p>
+            <h4>Titre</h4>
             <input
               style={{}}
               type="text"
@@ -75,11 +75,11 @@ console.log("obj",obj)
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               margin: "5px",
             }}
           >
-            <p>adresse</p>
+            <h4>Adresse</h4>
             <input
               style={{}}
               type="text"
@@ -92,11 +92,11 @@ console.log("obj",obj)
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               margin: "5px",
             }}
           >
-            <p>description</p>
+            <h4>Description</h4>
             <input
               style={{}}
               type="text"
@@ -109,11 +109,11 @@ console.log("obj",obj)
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               margin: "5px",
             }}
           >
-            <p>phone</p>
+            <h4>Phone</h4>
             <input
               style={{}}
               type="text"
@@ -126,20 +126,20 @@ console.log("obj",obj)
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 margin: "5px",
               }}
             >
-              <p>typeJob</p>
+              <h4>Type Job</h4>
 
               <Select
                 options={typeJobTab}
                 isMulti
                 defaultValue={
-                  typeJobTab&&workAd&&workAd.typeJob?
-                  typeJobTab.filter((el) =>
-                        workAd.typeJob.includes(el.value)
-                      ):
+                  // typeJobTab&&workAd&&workAd.typeJob?
+                  // typeJobTab.filter((el) =>
+                  //       workAd.typeJob.includes(el.value)
+                  //     ):
                    []
                 }
                 onChange={setSelectedOption}
@@ -149,10 +149,10 @@ console.log("obj",obj)
           <div style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 margin: "5px",
               }}>
-          <p>images</p>
+          <h4>Images</h4>
             <input
               style={{}}
               type="file"

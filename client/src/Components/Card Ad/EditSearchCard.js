@@ -57,9 +57,9 @@ const EditSearchCard = ({ element }) => {
       >
         <FontAwesomeIcon color="gray" className="btnicon" icon={faEdit} />
       </button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{marginTop:'50px'}} >
         <Modal.Header closeButton>
-          <Modal.Title>updating Search</Modal.Title>
+          <Modal.Title><h3>Updating Search</h3> </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -67,11 +67,11 @@ const EditSearchCard = ({ element }) => {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 margin: "5px",
               }}
             >
-              <p>Adresse</p>
+              <h4>Adresse</h4>
               <input
                 style={{}}
                 type="text"
@@ -84,11 +84,11 @@ const EditSearchCard = ({ element }) => {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 margin: "5px",
               }}
             >
-              <p>Phone</p>
+              <h4>Phone</h4>
               <input
                 style={{}}
                 type="number"
@@ -101,21 +101,22 @@ const EditSearchCard = ({ element }) => {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 margin: "5px",
               }}
             >
-              <p>Type Job</p>
+              <h4>Type Job</h4>
 
               <Select
                 options={typeJobTab}
                 isMulti
                 defaultValue={
-                  typeJobTab && searchAd && searchAd.typeJob
-                    ? typeJobTab.filter((el) =>
-                        searchAd.typeJob.includes(el.value)
-                      )
-                    : []
+                  // typeJobTab && searchAd && searchAd.typeJob
+                  //   ? typeJobTab.filter((el) =>
+                  //       searchAd.typeJob.includes(el.value)
+                  //     )
+                  //   : 
+                    []
                 }
                 onChange={setSelectedOption}
                 className="styleSelected"
@@ -126,11 +127,11 @@ const EditSearchCard = ({ element }) => {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 margin: "5px",
               }}
             >
-              <p>Bio</p>
+              <h4>Bio</h4>
               <input
                 style={{}}
                 type="text"
@@ -143,11 +144,11 @@ const EditSearchCard = ({ element }) => {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 margin: "5px",
               }}
             >
-              <p>Image</p>
+              <h4>Image</h4>
               <input
                 style={{}}
                 type="file"

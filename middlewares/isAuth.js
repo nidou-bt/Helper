@@ -17,7 +17,6 @@ const isAuth=async(req,res,next)=>{
         return res.status(200).send({errors:[{msg:"No User With This Id"}]})
     }
     req.user=findUser;
-    // console.log("req.user",req.user)
         next();
     } catch (error) {
         return res.status(401).send({errors:[{msg:"Not Authorized"}]})

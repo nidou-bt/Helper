@@ -26,10 +26,10 @@ const NavbarAdmin = () => {
     setAnchorEl(null);
   };
   return (
-    <div >
+    <div style={{ position:'-webkit-sticky',paddingTop: '80px'}} >
       
       <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar style={{backgroundColor:'#717073'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Helper
@@ -42,10 +42,10 @@ const NavbarAdmin = () => {
               <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} color="inherit">
                 <AccountCircle />
               </IconButton>
-              <Menu id="menu-appbar" anchorEl={anchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={Boolean(anchorEl)} onClose={handleClose} >
-                <MenuItem onClick={handleClose}><Link to="/profil" style={{textDecoration:'none', marginLeft:"10px"}}>Profil</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link to="/addad" style={{textDecoration:'none', marginLeft:"10px"}}>Add Ad</Link></MenuItem>
-                <MenuItem onClick={handelLogout}><Link to="/" style={{textDecoration:'none', marginLeft:"10px"}}>Logout</Link></MenuItem>
+              <Menu id="menu-appbar" anchorEl={anchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right'}} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={Boolean(anchorEl)} onClose={handleClose} style={{marginTop:'45px'}} >
+                <MenuItem onClick={handleClose}><Link to="/profil" style={{textDecoration:'none', marginLeft:"10px", color:'#717073'}}>Profil</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to="/addad" style={{textDecoration:'none', marginLeft:"10px", color:'#717073'}}>Add Ad</Link></MenuItem>
+                <MenuItem onClick={handelLogout}><Link to="/" style={{textDecoration:'none', marginLeft:"10px", color:'#717073'}}>Logout</Link></MenuItem>
               </Menu>
             </div>
           ):<div>

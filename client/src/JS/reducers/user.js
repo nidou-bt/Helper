@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   CURRENT_USER,
   FAIL_USER,
   GET_USER,
@@ -26,7 +27,7 @@ const userReducer = (state = initialState, { type, payload }) => {
       localStorage.setItem("token", payload.token);
       return { ...state, isLoad: false, user: payload.user, isAuth: true };
     case FAIL_USER:
-      return { ...state, isLoad: false,errors: payload.errors };
+      return { ...state, isLoad: false, errors: payload.errors };
     case CURRENT_USER:
       return {
         ...state,
@@ -41,6 +42,8 @@ const userReducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoad: false, user: payload };
     case GET_USERS:
       return { ...state, isLoad: false, users: payload.Users };
+    case CLEAR_ERRORS:
+      return { ...state, isLoad: false, errors: null };
     default:
       return state;
   }

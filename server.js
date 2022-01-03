@@ -6,7 +6,6 @@ const app=express();
 connectDB();
 
 //router
-
 app.use(express.json());
 //user
 app.use("/api/user", require("./router/User.router"))

@@ -14,17 +14,17 @@ exports.getAllWorkAd = async (req, res) => {
 //add work_ad
 exports.addnewWorkAd = async (req, res) => {
   try {
-    let imageUrl =[];
+    let imageUrl = [];
     if (req.files) {
       // imageUrl = req.file.filename;
-      imageUrl = req.files.map(el=>el.filename);
+      imageUrl = req.files.map((el) => el.filename);
     }
     //add new work ad by id_user:req.user_id
     const newWorkAd = new Work_Ad({
       ...req.body,
       Auth: req.user._id,
-      name:req.user.name,
-      email:req.user.email,
+      name: req.user.name,
+      email: req.user.email,
       imageUrl: imageUrl,
     });
     await newWorkAd.save();
@@ -97,9 +97,9 @@ exports.updateOneWorkById = async (req, res) => {
     let findWork = await Work_Ad.findById(req.params.id);
     //verified img
     if (req.files.length === 0) {
-       imageUrl=findWork.imageUrl
-    }else{
-      imageUrl = req.files.map(el=>el.filename);
+      imageUrl = findWork.imageUrl;
+    } else {
+      imageUrl = req.files.map((el) => el.filename);
     }
     if (!findWork) {
       return res

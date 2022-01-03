@@ -1,3 +1,4 @@
+import { CLEAR_ERRORS } from "../constants/user";
 import {
   FAIL_WORK,
   GET_ALL_WORK,
@@ -21,6 +22,8 @@ const workReducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoad: true };
     case FAIL_WORK:
       return { ...state, isLoad: false, errors: payload.errors };
+    case CLEAR_ERRORS:
+      return { ...state, isLoad: false, errors: null };
     default:
       return state;
   }
