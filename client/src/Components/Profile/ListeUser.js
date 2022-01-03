@@ -15,7 +15,7 @@ const ListeUser = () => {
     const workList = useSelector(state => state.workReducer.workList)
     const token = localStorage.getItem("token");
 useEffect(() => {
-    if(user&&user.role==1){
+    if(user&&user.role===1){
         dispatch(getUsers())
         dispatch(getAllSearch())
         dispatch(getAllWork())

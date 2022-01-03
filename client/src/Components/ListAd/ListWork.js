@@ -6,7 +6,6 @@ import Loading from "../Loading";
 const ListWork = () => {
   const workList = useSelector((state) => state.workReducer.workList);
   const isLoad = useSelector((state) => state.workReducer.isLoad);
-  const isError = useSelector((state) => state.workReducer.isError);
   return (
     <div style={{minHeight:'500px'}}>
       {isLoad ? (

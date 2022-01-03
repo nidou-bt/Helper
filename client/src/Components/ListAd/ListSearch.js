@@ -5,7 +5,6 @@ import Loading from "../Loading";
 const ListSearch = () => {
   const searchList = useSelector((state) => state.searchReducer.searchList);
   const isLoad = useSelector((state) => state.searchReducer.isLoad);
-  const isError = useSelector((state) => state.searchReducer.isError);
   return (
     <div style={{minHeight:'500px'}}>
       {isLoad ? (
