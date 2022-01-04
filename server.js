@@ -17,6 +17,5 @@ app.use("/api/searchad",require("./router/SearchAd.router"))
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 
-
-const PORT=process.env.port;
+const PORT=process.env.PORT;
 app.listen(PORT,()=>console.log("server is running on", PORT))
