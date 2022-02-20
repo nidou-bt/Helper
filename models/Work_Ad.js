@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// ilawaj 3ala 5adam
-// helper
+
 const workAdSchema = new Schema({
   name: {
     type: String,
