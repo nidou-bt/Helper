@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// ilawaj 3ala 5idma
+
 const searchAdSchema = new Schema({
   name: {
     type: String,
